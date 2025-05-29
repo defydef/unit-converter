@@ -27,7 +27,7 @@ export default function ComboSelect({ items, selected, onSelect }) {
       <div className="relative">
         <ComboboxInput
           className={clsx(
-            "w-full rounded border border-gray-700 py-1.5 pr-8 pl-3 text-sm/6",
+            "w-full rounded border border-gray-700 py-2 pr-8 pl-3 text-sm/6",
             "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25"
           )}
           displayValue={(item) => item}
@@ -44,7 +44,7 @@ export default function ComboSelect({ items, selected, onSelect }) {
         className={clsx(
           "w-(--input-width) rounded-xl border border-white/5 p-1 [--anchor-gap:--spacing(1)] empty:invisible",
           "transition duration-100 ease-in",
-          "bg-base-100"
+          "bg-base-100 cursor-pointer"
         )}
       >
         {filteredItems.map((item, index) => (

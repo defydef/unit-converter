@@ -2,12 +2,21 @@ import { useEffect, useState } from "react";
 import { units } from "./data/units";
 import "./App.css";
 import ComboSelect from "./components/ComboSelect";
+import EditableInput from "./components/EditableInput";
+import DisplayedValue from "./components/DisplayedValue";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Select from "./components/Select";
+import SoftButton from "./components/SoftButton";
+import Button from "./components/Button";
+import Result from "./components/Result";
+import History from "./components/History";
 
 function App() {
   const [category, setCategory] = useState("length");
   const [value, setValue] = useState(1);
-  const [fromUnit, setFromUnit] = useState("meter");
-  const [toUnit, setToUnit] = useState("kilometer");
+  const [fromUnit, setFromUnit] = useState(Object.keys(units[category])[0]);
+  const [toUnit, setToUnit] = useState(Object.keys(units[category])[1]);
   const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
 
@@ -29,120 +38,66 @@ function App() {
     setToUnit(temp);
   };
 
+  function formatNumber(value) {
+    return value % 1 === 0 ? value.toFixed(0) : value.toFixed(4);
+  }
+
+  // execute convert function each time value, category, fromUnit, toUnit are changed
   useEffect(() => {
     convert();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, category, fromUnit, toUnit]);
 
+  // Set default from and to units according to selected category
+  useEffect(() => {
+    setFromUnit(Object.keys(units[category])[0]);
+    setToUnit(Object.keys(units[category])[1]);
+  }, [category]);
+
   return (
-    <div className="min-h-screen p-6 font-montserrat">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        🔁 Universal Unit Converter
-      </h1>
+    <main className="min-h-screen p-6 font-montserrat">
+      <Header />
 
-      <div className="max-w-xl mx-auto p-6 rounded-xl shadow">
-        <div className="mb-4">
-          <label className="block mb-2 font-medium">Category</label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="p-2 border rounded w-full select cursor-pointer"
-          >
-            {Object.keys(units).map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
+      <section className="max-w-xl mx-auto p-6 flex flex-col justify-center gap-4">
+        <section>
+          <h2 className="text-2xl font-bold tracking-wider">Category</h2>
+          <Select value={category} onSelect={setCategory} items={units} />
+        </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <section>
-            <label className="input">
-              <span className="label">From</span>
-              <input
-                type="number"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                placeholder="Enter value"
-                className="p-2 rounded w-full"
-              />
-            </label>
-          </section>
-
-          <section>
-            <label className="input">
-              <span className="label">To</span>
-              <input
-                type="text"
-                value={result == null || isNaN(result) ? "" : result.toFixed(4)}
-                readOnly
-                className="p-2 rounded w-full cursor-not-allowed"
-              />
-            </label>
-          </section>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <ComboSelect
-            items={Object.keys(units[category])}
-            selected={fromUnit}
-            onSelect={setFromUnit}
-          />
-
-          <ComboSelect
-            items={Object.keys(units[category])}
-            selected={toUnit}
-            onSelect={setToUnit}
-          />
-        </div>
-
-        <div className="flex justify-between items-center mb-4">
-          <button
-            onClick={swapUnits}
-            className="btn btn-soft text-base-800 cursor-pointer rounded"
-          >
-            🔄 Swap Units
-          </button>
-          <button
-            onClick={convert}
-            className="btn btn-secondary px-4 py-2 rounded cursor-pointer text-lg"
-          >
-            Convert
-          </button>
-        </div>
-
-        {result !== null && !isNaN(result) && (
-          <div className="flex flex-col items-center">
-            <p className="text-base-800 font-bold text-2xl">Result:</p>
-            <p className="text-xl text-secondary">
-              {result.toFixed(4)} {toUnit}
-            </p>
+        <section>
+          <h3 className="mb-2">From</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <EditableInput value={value} onSelect={setValue} />
+            <ComboSelect
+              items={Object.keys(units[category])}
+              selected={fromUnit}
+              onSelect={setFromUnit}
+            />
           </div>
-        )}
+        </section>
+        <section>
+          <h3 className="mb-2">To</h3>
+          <section className="grid grid-cols-2 gap-4 mb-4">
+            <DisplayedValue value={result} formatNumber={formatNumber} />
+            <ComboSelect
+              items={Object.keys(units[category])}
+              selected={toUnit}
+              onSelect={setToUnit}
+            />
+          </section>
+        </section>
 
-        {history.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-md font-semibold mb-2">
-              📚 Conversion History:
-            </h2>
-            <ul className="list-disc pl-5 text-sm text-gray-600">
-              {history.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+        <section className="flex justify-between items-center mb-4">
+          <SoftButton onClick={swapUnits}>🔄 Swap Units</SoftButton>
+          <Button onClick={convert}>Convert</Button>
+        </section>
 
-      <footer className="mt-8 text-center text-xs text-gray-500">
-        🌐 Built by You |{" "}
-        <a href="#" className="underline">
-          GitHub
-        </a>{" "}
-        | <a href="#">Contact</a>
-      </footer>
-    </div>
+        <Result result={result} toUnit={toUnit} formatNumber={formatNumber} />
+        <History history={history} />
+      </section>
+
+      <Footer />
+    </main>
   );
 }
 
