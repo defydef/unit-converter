@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-8 text-center text-xs text-gray-500">
+    <footer className="fixed bottom-0 w-screen bg-base-300 p-4 text-center shadow">
       🌐 Built by{" "}
       <a href="https://github.com/defydef" className="underline">
         defydef

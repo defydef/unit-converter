@@ -19,6 +19,7 @@ function App() {
   const [toUnit, setToUnit] = useState(Object.keys(units[category])[1]);
   const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
+  const [copied, setCopied] = useState(false);
 
   const convert = () => {
     const fromFactor = units[category][fromUnit];
@@ -42,6 +43,16 @@ function App() {
     return value % 1 === 0 ? value.toFixed(0) : value.toFixed(4);
   }
 
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(result);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500); // Reset after 1.5s
+    } catch (err) {
+      console.error("Copy failed:", err);
+    }
+  };
+
   // execute convert function each time value, category, fromUnit, toUnit are changed
   useEffect(() => {
     convert();
@@ -55,7 +66,7 @@ function App() {
   }, [category]);
 
   return (
-    <main className="min-h-screen p-6 font-montserrat">
+    <main className="flex min-h-screen flex-col font-montserrat">
       <Header />
 
       <section className="max-w-xl mx-auto p-6 flex flex-col justify-center gap-4">
@@ -93,6 +104,9 @@ function App() {
         </section>
 
         <Result result={result} toUnit={toUnit} formatNumber={formatNumber} />
+        <SoftButton onClick={handleCopy}>
+          {copied ? "Copied!" : "Copy Result"}
+        </SoftButton>
         <History history={history} />
       </section>
 
