@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { units } from "./data/units";
 import "./App.css";
+import ComboSelect from "./components/ComboSelect";
 
 function App() {
   const [category, setCategory] = useState("length");
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(1);
   const [fromUnit, setFromUnit] = useState("meter");
   const [toUnit, setToUnit] = useState("kilometer");
   const [result, setResult] = useState(null);
@@ -31,7 +32,7 @@ function App() {
   useEffect(() => {
     convert();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, category]);
+  }, [value, category, fromUnit, toUnit]);
 
   return (
     <div className="min-h-screen p-6 font-montserrat">
@@ -83,29 +84,17 @@ function App() {
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <select
-            value={fromUnit}
-            onChange={(e) => setFromUnit(e.target.value)}
-            className="p-2 border rounded w-full select cursor-pointer"
-          >
-            {Object.keys(units[category]).map((unit) => (
-              <option key={unit} value={unit}>
-                {unit}
-              </option>
-            ))}
-          </select>
+          <ComboSelect
+            items={Object.keys(units[category])}
+            selected={fromUnit}
+            onSelect={setFromUnit}
+          />
 
-          <select
-            value={toUnit}
-            onChange={(e) => setToUnit(e.target.value)}
-            className="p-2 border rounded w-full select cursor-pointer"
-          >
-            {Object.keys(units[category]).map((unit) => (
-              <option key={unit} value={unit}>
-                {unit}
-              </option>
-            ))}
-          </select>
+          <ComboSelect
+            items={Object.keys(units[category])}
+            selected={toUnit}
+            onSelect={setToUnit}
+          />
         </div>
 
         <div className="flex justify-between items-center mb-4">
