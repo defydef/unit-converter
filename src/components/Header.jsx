@@ -1,7 +1,21 @@
-export default function Header() {
+export default function Header({ group }) {
+  const mapGroup = (group) => {
+    switch (group) {
+      case "Engineering":
+        return "👷🏽‍♂️ Engineering";
+      case "Digital":
+        return "💻 Digital";
+      default:
+        return "";
+    }
+  };
+
   return (
-    <h1 className="text-3xl font-extrabold text-center pt-8 pb-6">
-      🔁 Universal Unit Converter
-    </h1>
+    <section className="flex justify-center items-center flex-col pt-8 gap-2 pb-2">
+      <h1 className="text-3xl font-extrabold text-secondary">
+        Universal Unit Converter
+      </h1>
+      <h2 className="text-xl">{mapGroup(group)}</h2>
+    </section>
   );
 }
