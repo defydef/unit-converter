@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     convert();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, fromUnit, toUnit, category]);
+  }, [value, category]);
 
   return (
     <div className="min-h-screen p-6 font-montserrat">
