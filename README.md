@@ -10,10 +10,10 @@ A simple and responsive web-based unit converter built with **React** and **Tail
 - 🔄 Swap between units
 - 📚 History of recent conversions
 - 🧠 Categories:
-  🔧 Engineering: Length, Mass, Force, Pressure, Energy, Power, Density, and more.
-  💻 Digital: Bit/Byte conversions (kB, MB, GB, etc.), bandwidth units, data rates.
-  🍳 Cooking: Cups, tablespoons, teaspoons, fluid ounces, grams, liters, pints, and other common culinary measurements.
-  🌌 Astronomy: Light-years, parsecs, astronomical units, planetary mass, surface gravity, star classifications, and black hole mass scales.
+  - 🔧 Engineering: Length, Mass, Force, Pressure, Energy, Power, Density, and more.
+  - 💻 Digital: Bit/Byte conversions (kB, MB, GB, etc.), bandwidth units, data rates.
+  - 🍳 Cooking: Cups, tablespoons, teaspoons, fluid ounces, grams, liters, pints, and other common culinary measurements.
+  - 🌌 Astronomy: Light-years, parsecs, astronomical units, planetary mass, surface gravity, star classifications, and black hole mass scales.
 - 📱 Fully responsive design
 - 🎨 Clean Tailwind CSS styling
 
