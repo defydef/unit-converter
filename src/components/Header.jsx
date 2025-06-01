@@ -5,6 +5,10 @@ export default function Header({ group }) {
         return "👷🏽‍♂️ Engineering";
       case "Digital":
         return "💻 Digital";
+      case "Astronomy":
+        return "⭐️ Astronomy";
+      case "Cooking":
+        return "👩🏻‍🍳 Cooking";
       default:
         return "";
     }

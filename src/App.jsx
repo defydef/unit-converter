@@ -3,6 +3,8 @@ import "./App.css";
 
 import { engineering } from "./data/engineering";
 import { digital } from "./data/digital";
+import { astronomy } from "./data/astronomy";
+import { cooking } from "./data/cooking";
 import { groups } from "./data/groups";
 
 import ComboSelect from "./components/ComboSelect";
@@ -90,6 +92,14 @@ function App() {
       case "Digital":
         setUnits(digital);
         setCategory(Object.keys(digital)[0]);
+        break;
+      case "Astronomy":
+        setUnits(astronomy);
+        setCategory(Object.keys(astronomy)[0]);
+        break;
+      case "Cooking":
+        setUnits(cooking);
+        setCategory(Object.keys(cooking)[0]);
         break;
       default:
         setUnits(engineering);
