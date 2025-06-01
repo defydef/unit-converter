@@ -1,6 +1,6 @@
 # 🔁 Universal Unit Converter
 
-A simple and responsive web-based unit converter built with **React** and **Tailwind CSS**. Automatically converts values across unit categories like **length** and **mass**.
+A simple and responsive web-based unit converter built with **React** and **Tailwind CSS**. Convert values across various real-world categories with precision and ease.
 
 ![Screenshot](./unit-converter.png)
 
@@ -9,7 +9,11 @@ A simple and responsive web-based unit converter built with **React** and **Tail
 - 🌐 Convert units instantly as you type
 - 🔄 Swap between units
 - 📚 History of recent conversions
-- 🧠 Categories: Length, Mass (more coming soon)
+- 🧠 Categories:
+  🔧 Engineering: Length, Mass, Force, Pressure, Energy, Power, Density, and more.
+  💻 Digital: Bit/Byte conversions (kB, MB, GB, etc.), bandwidth units, data rates.
+  🍳 Cooking: Cups, tablespoons, teaspoons, fluid ounces, grams, liters, pints, and other common culinary measurements.
+  🌌 Astronomy: Light-years, parsecs, astronomical units, planetary mass, surface gravity, star classifications, and black hole mass scales.
 - 📱 Fully responsive design
 - 🎨 Clean Tailwind CSS styling
 
@@ -21,6 +25,7 @@ A simple and responsive web-based unit converter built with **React** and **Tail
 
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
 - Vite (for fast development)
 - JavaScript (ES6+)
 
