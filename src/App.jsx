@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import "./App.css";
 
 import { engineering } from "./data/engineering";
@@ -107,65 +108,124 @@ function App() {
   }, [group]);
 
   return (
-    <main className="flex min-h-screen flex-col font-montserrat">
-      <Header group={group} />
+    <>
+      <Helmet>
+        {/* Title */}
+        <title>
+          Universal Converter | Convert Engineering, Digital, Cooking, Astronomy
+          Units
+        </title>
 
-      <section className="max-w-xl mx-auto p-6 flex flex-col justify-center gap-4">
-        <section>
-          <h2 className="text-2xl font-bold tracking-wider mb-2">Group</h2>
-          <Select
-            value={group}
-            onSelect={setGroup}
-            items={groups}
-            selectType="groups"
-          />
-        </section>
-        <section>
-          <h2 className="text-2xl font-bold tracking-wider mb-2">Category</h2>
-          <ComboSelect
-            items={Object.keys(units)}
-            selected={category}
-            onSelect={setCategory}
-          />
-        </section>
+        {/* Meta Description */}
+        <meta
+          name="description"
+          content="Free and easy-to-use online unit converter. Instantly convert values across Engineering, Digital Storage, Cooking, and Astronomy categories with accurate results."
+        />
 
-        <section>
-          <h3 className="mb-2">From</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <EditableInput value={value} onSelect={setValue} />
-            <ComboSelect
-              items={Object.keys(units[category] || [])}
-              selected={fromUnit}
-              onSelect={setFromUnit}
-            />
-          </div>
-        </section>
-        <section>
-          <h3 className="mb-2">To</h3>
-          <section className="grid grid-cols-2 gap-4 mb-4">
-            <DisplayedValue value={result} formatNumber={formatNumber} />
-            <ComboSelect
-              items={Object.keys(units[category] || [])}
-              selected={toUnit}
-              onSelect={setToUnit}
+        {/* Keywords */}
+        <meta
+          name="keywords"
+          content="unit converter, engineering unit converter, cooking measurements, digital storage conversion, astronomy units, GB to MB, cups to grams, light years to km, online unit converter"
+        />
+
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href="https://unit-converter-jade-nine.vercel.app/"
+        />
+
+        {/* Open Graph (Facebook/LinkedIn) */}
+        <meta
+          property="og:title"
+          content="Unit Converter | Engineering, Digital, Cooking, Astronomy"
+        />
+        <meta
+          property="og:description"
+          content="Convert units instantly in multiple categories including engineering, digital, cooking, and astronomy."
+        />
+        <meta
+          property="og:url"
+          content="https://unit-converter-jade-nine.vercel.app/"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content="https://raw.githubusercontent.com/defydef/unit-converter/refs/heads/main/unit-converter.png"
+        />
+
+        {/* Twitter Card (optional) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Unit Converter App" />
+        <meta
+          name="twitter:description"
+          content="Quickly convert units across engineering, cooking, digital storage, and astronomy categories."
+        />
+        <meta
+          name="twitter:image"
+          content="https://raw.githubusercontent.com/defydef/unit-converter/refs/heads/main/unit-converter.png"
+        />
+      </Helmet>
+
+      <main className="flex min-h-screen flex-col font-montserrat">
+        <Header group={group} />
+
+        <section className="max-w-xl mx-auto p-6 flex flex-col justify-center gap-4">
+          <section>
+            <h2 className="text-2xl font-bold tracking-wider mb-2">Group</h2>
+            <Select
+              value={group}
+              onSelect={setGroup}
+              items={groups}
+              selectType="groups"
             />
           </section>
+          <section>
+            <h2 className="text-2xl font-bold tracking-wider mb-2">Category</h2>
+            <ComboSelect
+              items={Object.keys(units)}
+              selected={category}
+              onSelect={setCategory}
+            />
+          </section>
+
+          <section>
+            <h3 className="mb-2">From</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <EditableInput value={value} onSelect={setValue} />
+              <ComboSelect
+                items={Object.keys(units[category] || [])}
+                selected={fromUnit}
+                onSelect={setFromUnit}
+              />
+            </div>
+          </section>
+          <section>
+            <h3 className="mb-2">To</h3>
+            <section className="grid grid-cols-2 gap-4 mb-4">
+              <DisplayedValue value={result} formatNumber={formatNumber} />
+              <ComboSelect
+                items={Object.keys(units[category] || [])}
+                selected={toUnit}
+                onSelect={setToUnit}
+              />
+            </section>
+          </section>
+
+          <section className="flex justify-between items-center mb-4">
+            <SoftButton onClick={swapUnits}>🔄 Swap Units</SoftButton>
+            <Button onClick={convert}>Convert</Button>
+          </section>
+
+          <Result result={result} toUnit={toUnit} formatNumber={formatNumber} />
+          <SoftButton onClick={handleCopy}>
+            {copied ? "Copied!" : "Copy Result"}
+          </SoftButton>
+          <History history={history} />
         </section>
 
-        <section className="flex justify-between items-center mb-4">
-          <SoftButton onClick={swapUnits}>🔄 Swap Units</SoftButton>
-          <Button onClick={convert}>Convert</Button>
-        </section>
-
-        <Result result={result} toUnit={toUnit} formatNumber={formatNumber} />
-        <SoftButton onClick={handleCopy}>
-          {copied ? "Copied!" : "Copy Result"}
-        </SoftButton>
-        <History history={history} />
-      </section>
-
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </>
   );
 }
 
