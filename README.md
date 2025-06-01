@@ -2,7 +2,7 @@
 
 A simple and responsive web-based unit converter built with **React** and **Tailwind CSS**. Convert values across various real-world categories with precision and ease.
 
-![Screenshot](./unit-converter.png)
+![Screenshot](./unit-converter-screenshot.png)
 
 ## ✨ Features
 

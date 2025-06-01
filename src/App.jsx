@@ -150,7 +150,7 @@ function App() {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://raw.githubusercontent.com/defydef/unit-converter/refs/heads/main/unit-converter.png"
+          content="https://unit-converter-jade-nine.vercel.app/unit-converter-screenshot.png"
         />
 
         {/* Twitter Card (optional) */}
@@ -162,7 +162,7 @@ function App() {
         />
         <meta
           name="twitter:image"
-          content="https://raw.githubusercontent.com/defydef/unit-converter/refs/heads/main/unit-converter.png"
+          content="https://unit-converter-jade-nine.vercel.app/unit-converter-screenshot.png"
         />
       </Helmet>
 
