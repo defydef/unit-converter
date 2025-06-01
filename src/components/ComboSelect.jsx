@@ -33,7 +33,10 @@ export default function ComboSelect({ items, selected, onSelect }) {
           displayValue={(item) => item}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5 cursor-pointer">
+        <ComboboxButton
+          className="group absolute inset-y-0 right-0 px-2.5 cursor-pointer"
+          aria-label="Select Unit"
+        >
           <ChevronDownIcon className="size-4 fill-white/60 group-data-hover:fill-white" />
         </ComboboxButton>
       </div>
