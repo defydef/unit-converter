@@ -9,7 +9,7 @@ import {
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 
-export default function ComboSelect({ items, selected, onSelect }) {
+export default function ComboSelect({ items, selected, onSelect, type }) {
   const [query, setQuery] = useState("");
   const filteredItems =
     query === ""
@@ -32,6 +32,7 @@ export default function ComboSelect({ items, selected, onSelect }) {
           )}
           displayValue={(item) => item}
           onChange={(event) => setQuery(event.target.value)}
+          placeholder={type === "unit" ? "Search unit.." : "Search category.."}
         />
         <ComboboxButton
           className="group absolute inset-y-0 right-0 px-2.5 cursor-pointer"

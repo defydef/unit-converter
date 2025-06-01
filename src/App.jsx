@@ -185,6 +185,7 @@ function App() {
               items={Object.keys(units)}
               selected={category}
               onSelect={setCategory}
+              type="category"
             />
           </section>
 
@@ -196,6 +197,7 @@ function App() {
                 items={Object.keys(units[category] || [])}
                 selected={fromUnit}
                 onSelect={setFromUnit}
+                type="unit"
               />
             </div>
           </section>
@@ -207,6 +209,7 @@ function App() {
                 items={Object.keys(units[category] || [])}
                 selected={toUnit}
                 onSelect={setToUnit}
+                type="unit"
               />
             </section>
           </section>
