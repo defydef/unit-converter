@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://unit-converter-jade-nine.vercel.app/sitemap.xml
+Sitemap: https://www.onlineconverter.info/sitemap.xml
